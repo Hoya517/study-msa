@@ -13,12 +13,14 @@ import java.util.logging.Logger;
 @Component
 public class CustomPreFilter implements GlobalFilter, Ordered {
 
-    private final Logger logger = Logger.getLogger(CustomPreFilter.class.getName());
+    private static final Logger logger = Logger.getLogger(CustomPreFilter.class.getName());
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        logger.info("Pre Filter: Request URI: " + request.getURI());
+        logger.info("Pre Filter: Request URI is " + request.getURI());
+        // Add any custom logic here
+
         return chain.filter(exchange);
     }
 
